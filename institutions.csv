@@ -1,0 +1,8 @@
+Institution,Type,Skip,Date_Column,Description_Column,Amount_Column,File_Name,Special_Instructions
+AMAZON,CREDIT,0,Posting Date,Description,Amount,AMZ-,None
+AMZ,CREDIT,0,Posting Date,Description,Amount,AMZ-,None
+BANK OF AMERICA,CHECKING,6,Date,Description,Amount,BoA-Check-,delete first row
+BANK OF AMERICA,CREDIT,0,Posted Date,Payee,Amount,BoA-Credit-,None
+BOA,CHECKING,6,Date,Description,Amount,BoA-Check-,delete first row
+BOA,CREDIT,0,Posted Date,Payee,Amount,BoA-Credit-,None
+DISCOVER,CREDIT,0,Post Date,Description,Amount,Discover-,negate amount
