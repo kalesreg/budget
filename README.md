@@ -19,7 +19,7 @@ setwd("C:\Users\kales\OneDrive\Documents\GitHub\budget")
 ### Step 2: Use source() to read the budget.R file into the environment.
 
 ```{r}
-source("budget.R")
+source("walkthrough.R")
 ```
 
 ### Step 3: Begin the process by using the budget() function. The default folder input is "raw-data"; if you are using a different folder, then make sure to put this in.
