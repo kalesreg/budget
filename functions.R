@@ -83,7 +83,7 @@ transaction.data <- function() {
 ## credit organizations into the environment. Corresponds to Step 3 of the 
 ## walkthrough. (Complete)
 
-read.transaction.folder <- function(folder) {
+read.transaction.folder <- function(folder = "./raw-data") {
         institution.data()
         data <- data.table()
         files <- list.files(folder, full.names = TRUE)
@@ -190,11 +190,14 @@ category.data <- function() {
 
 category.sort <- function(data) {
         category.data()
-        data$Category <- "Unassigned"
+        if (any(str_detect(colnames(data), "Category")) == FALSE) {
+                data$Category <- "Unassigned"
+        }
         for (i in 1:nrow(data)) {
-                x <- str_detect(toupper(data[i, "Description"]), categories$Description)
-                if (any(x) == TRUE) {
-                        data[i, "Category"] <- categories[x, "Category"]
+                if (any(str_detect(toupper(data[i, "Description"]), categories$Description)) == TRUE) {
+                        data[i, "Category"] <- categories[str_detect(toupper(data[i, "Description"]), categories$Description), "Category"]
+                } else if (any(str_detect(data[i, "Category"], categories$Category)) == TRUE) {
+                        next
                 } else {
                         data[i, "Category"] <- "Other"
                 }
@@ -298,11 +301,11 @@ other.desc <- function(data) {
                         }
                 } else if (data[i, "Category"] != "Other" && i == nrow(data)) {
                         print("No more new descriptions")
-                        return(data)
                 } else {
                         next
                 }
         }
+        return(data)
 }
 
 ## add.desc is used to add a new description to a category for future use. It 
